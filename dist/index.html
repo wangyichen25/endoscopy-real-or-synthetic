@@ -8,11 +8,9 @@
 <h1>Can you tell which images are real?</h1><p>Review 100 endoscopy images. For each image, choose <strong>Real</strong>, <strong>Synthetic</strong>, or <strong>Unsure</strong>. Please work independently and complete the assessment once.</p>
 <form id="profile">
 <label for="name">Full name</label><input id="name" name="name" autocomplete="name" maxlength="120" required>
-<label for="experience">Years of endoscopy experience <span class="muted">(including training)</span></label><input id="experience" name="experience" type="number" min="0" max="80" step="0.1" inputmode="decimal" required>
-<fieldset><legend>May we list you as an individual coauthor, if authorship requirements are met?</legend><label><input type="radio" name="individual" value="yes" required> Yes</label><label><input type="radio" name="individual" value="no"> No</label><label><input type="radio" name="individual" value="discuss"> Please discuss with me first</label></fieldset>
-<fieldset><legend>May we include your name in a group author or collaborator listing?</legend><label><input type="radio" name="group" value="yes" required> Yes</label><label><input type="radio" name="group" value="no"> No</label><label><input type="radio" name="group" value="discuss"> Please discuss with me first</label></fieldset>
-<p class="muted">These choices are optional permissions for future consideration. Participation alone does not establish authorship. You may select No for either question and still participate.</p>
-<label class="check"><input id="agreement" type="checkbox" required> I agree to share my name, experience, authorship preferences, and image judgments with the study team for this study.</label>
+<label for="experience">Years of endoscopy experience</label><select id="experience" name="experience" required><option value="">Select a range</option><option value="&lt;5">&lt;5 years</option><option value="5-15">5-15 years</option><option value="&gt;15">&gt;15 years</option></select>
+<fieldset><legend>May we list you as an author if authorship requirements are met?</legend><label><input type="radio" name="authorship" value="yes" required> Yes</label><label><input type="radio" name="authorship" value="no"> No</label></fieldset>
+<label class="check"><input id="agreement" type="checkbox" required> I agree to share my details and image judgments with the study team.</label>
 <p class="muted">Your details and responses will be kept in the study team's private database. Your progress is saved in this browser until you submit. Avoid using a shared device.</p>
 <button class="primary" type="submit" id="start">Begin assessment</button>
 </form><button type="button" id="import-open" class="text">Restore a saved backup</button><input type="file" id="import" accept="application/json,.json" hidden>

@@ -611,11 +611,10 @@
   ],
   "profile": [
     "name",
-    "experienceYears",
-    "individualAuthorship",
-    "groupAuthorship",
+    "experienceRange",
+    "authorshipConsent",
     "dataSharingConsent"
   ],
-  "consentVersion": "2026-11-15-v1",
-  "packageFingerprint": "ff2a9f264e4947c8c436bc1764548ac5feb09e0fb08cff73892d223c02aa5930"
+  "consentVersion": "2026-11-15-v2",
+  "packageFingerprint": "09b3b1fa854411e59b965c7780ba0a3aec0b79c951e8321635f9172ba40cdd0c"
 }
