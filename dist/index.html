@@ -17,10 +17,12 @@
 </section>
 <section id="review" hidden aria-labelledby="image-title">
 <div class="review-head"><h1 id="image-title" tabindex="-1">Image 1 of 100</h1><span id="count"></span></div><progress id="progress" max="100" value="0" aria-label="Assessment progress"></progress>
+<p id="answer-status" class="answer-status" aria-live="polite"></p>
 <figure><div class="image-stage"><img id="image" width="512" height="512" alt="Endoscopy image for assessment"><span id="image-state" role="status">Loading image…</span></div><figcaption>Judge the complete image.</figcaption></figure>
 <fieldset id="judgment"><legend>Your judgment</legend><div class="choices"><button type="button" data-guess="real" aria-pressed="false">Real</button><button type="button" data-guess="generated" aria-pressed="false">Synthetic</button><button type="button" data-guess="unsure" aria-pressed="false">Unsure</button></div></fieldset>
 <div class="navigation"><button type="button" id="previous">Previous</button><button type="button" id="next">Next</button></div>
 <div class="secondary"><button type="button" id="pending" class="text">Next unanswered</button><label for="jump">Go to image <select id="jump"></select></label></div>
+<details id="unanswered-panel" class="unanswered-panel"><summary id="unanswered-summary">Unanswered images</summary><p id="unanswered-help">Select a number to jump to that image.</p><div id="unanswered-list" class="unanswered-list" role="group" aria-label="Unanswered image numbers"></div></details>
 <button type="button" id="finish" class="primary" hidden>Review and submit</button>
 <div class="utilities"><button type="button" id="profile-edit" class="text">Edit your details</button><button type="button" id="backup" class="text">Download backup</button></div>
 </section>
