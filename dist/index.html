@@ -8,7 +8,7 @@
 <h1>Can you tell which images are real?</h1><p>Review 100 endoscopy images. For each image, choose <strong>Real</strong>, <strong>Synthetic</strong>, or <strong>Unsure</strong>. Please work independently and complete the assessment once.</p>
 <form id="profile">
 <label for="name">Full name</label><input id="name" name="name" autocomplete="name" maxlength="120" required>
-<label for="experience">Years of endoscopy experience</label><select id="experience" name="experience" required><option value="">Select a range</option><option value="&lt;5">&lt;5 years</option><option value="5-15">5-15 years</option><option value="&gt;15">&gt;15 years</option></select>
+<label for="experience">Years of endoscopy experience</label><input id="experience" name="experience" type="number" min="0" max="80" step="0.1" inputmode="decimal" required>
 <fieldset><legend>May we list you as an author if authorship requirements are met?</legend><label><input type="radio" name="authorship" value="yes" required> Yes</label><label><input type="radio" name="authorship" value="no"> No</label></fieldset>
 <label class="check"><input id="agreement" type="checkbox" required> I agree to share my details and image judgments with the study team.</label>
 <p class="muted">Your details and responses will be kept in the study team's private database. Your progress is saved in this browser until you submit. Avoid using a shared device.</p>

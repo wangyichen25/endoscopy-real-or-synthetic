@@ -1,6 +1,6 @@
 # Endoscopy reader study
 
-A GitHub Pages assessment of the same 100 images, in the same order, as the original five-reader SNEL study. Participants choose Real, Synthetic, or Unsure. The profile asks for full name, years of endoscopy experience (<5, 5-15, or >15 years), and a single Yes/No question about authorship permission. Participation does not establish authorship.
+A GitHub Pages assessment of the same 100 images, in the same order, as the original five-reader SNEL study. Participants choose Real, Synthetic, or Unsure. The profile asks for full name, numeric years of endoscopy experience, and a single Yes/No question about authorship permission. Participation does not establish authorship.
 
 The image set is byte-identical to the original PNG packet. Image bytes are separate release assets, outside Git. Dataset credits and the CC BY 4.0 license accompany the site. No answer key, previous reader identities, prior responses, or model weights are included.
 
