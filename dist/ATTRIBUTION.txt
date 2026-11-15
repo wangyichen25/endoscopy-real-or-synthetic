@@ -1,0 +1,7 @@
+gastrovision: Debesh Jha, Vanshali Sharma, Neethi Dasu, Nikhil Kumar Tomar, Steven Hicks, M. K. Bhuyan, Pradip K. Das, Michael A. Riegler, Pål Halvorsen, Thomas de Lange, Ulas Bagci. GastroVision (2023).
+https://osf.io/84e7f/
+License: CC BY 4.0. Modifications: complete outer camera-border trimming, proportional resizing and minimum square padding.
+
+cas_colon: XiaoBo Li, Dahong Qian, Qingwei Zhang, Yiming Song, Zhengjie Zhang, Ruilan Wang, Ling Zhong, Crystal Cai, Jinnan Chen, Yujie Zhou, Xinyuan Wang, Zhao Li, Liuyi Yang, Zeyu Li, Hao Yan
+https://doi.org/10.6084/m9.figshare.28287929
+License: CC BY 4.0. Modifications: complete outer camera-border trimming, proportional resizing and minimum square padding.
