@@ -6,7 +6,7 @@ The image set is byte-identical to the original PNG packet. Image bytes are sepa
 
 ## Current status
 
-**Preview only: the study is not open to responses.** GitHub Pages serves the interface and images. Automatic private submission requires a separately hosted API and database. `config.json` deliberately keeps participation closed until the live backend is configured and verified.
+**Interactive preview only: use test details. The study is not open to submissions.** GitHub Pages serves the interface and images. Automatic private submission requires a separately hosted API and database. `config.json` deliberately keeps participation closed until the live backend is configured and verified.
 
 ## Collection contract
 
