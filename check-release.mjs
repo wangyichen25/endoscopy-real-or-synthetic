@@ -12,4 +12,5 @@ if(config.collectionEnabled){
   }else if(!config.apiBase.startsWith('https://'))throw Error('Automatic submissions require a configured HTTPS backend');
 }
 if(!/^[a-f0-9]{64}$/.test(config.scoreCommitment??'')||!fs.existsSync('dist/score.js'))throw Error('Missing aggregate scoring support');
+if(JSON.stringify(study.choices)!==JSON.stringify(['real','generated'])||study.version!==3||!study.previousPackageFingerprint||!config.legacyScoreCommitment)throw Error('Binary protocol or historical compatibility missing');
 console.log(JSON.stringify({status:'passed',images:100,collectionEnabled:config.collectionEnabled,packageFingerprint:study.packageFingerprint}));

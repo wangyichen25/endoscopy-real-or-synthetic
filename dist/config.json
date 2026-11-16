@@ -13,5 +13,6 @@
       "agreement": "r0c1e40e5d8a94c0fb24ae973916835dd"
     }
   },
-  "scoreCommitment": "e2d9c727f205ef2707706eb3170c7c09dc567c5d808d2a8627db222df91bddce"
+  "scoreCommitment": "ef74b366faed236f8bc1308d09d7e91703c25a01fe484e4b809228cb0e255ab8",
+  "legacyScoreCommitment": "e2d9c727f205ef2707706eb3170c7c09dc567c5d808d2a8627db222df91bddce"
 }

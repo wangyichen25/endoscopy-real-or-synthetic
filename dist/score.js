@@ -1,4 +1,4 @@
-import {validatePacket} from './protocol.js';
+import {validatePacket} from './protocol.js?v=binary-v1';
 
 export async function digest(value) {
   const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));
@@ -7,10 +7,10 @@ export async function digest(value) {
 
 // The scoring key arrives only in the Forms confirmation link's fragment.
 // Public source contains its commitment, never the image labels or this link.
-export async function readScoreKey(value,study,commitment) {
+export async function readScoreKey(value,study,commitment,legacyCommitment) {
   const match=value.match(/^v1\.([a-f0-9]{64})\.([a-f0-9]{25})$/);
-  if(!match||match[1]!==study.packageFingerprint||
-      await digest(`SNEL-score-v1\n${match[1]}\n${match[2]}`)!==commitment)
+  const expected=match?.[1]===study.packageFingerprint?commitment:match?.[1]===study.previousPackageFingerprint?legacyCommitment:null;
+  if(!match||!expected||await digest(`SNEL-score-v1\n${match[1]}\n${match[2]}`)!==expected)
     throw Error('This score link is invalid or belongs to another assessment. Please use the link on your Microsoft Forms confirmation page.');
   return Array.from(match[2],c=>parseInt(c,16).toString(2).padStart(4,'0')).join('').split('').map(b=>b==='0'?'real':'generated');
 }

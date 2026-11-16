@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "packetType": "endoscopy-reader-study",
   "originalPackageFingerprint": "56c177da976b33c3b0a5c5e13a0e2694d3676ab909e1fd46655857075044964c",
   "images": [
@@ -606,8 +606,7 @@
   ],
   "choices": [
     "real",
-    "generated",
-    "unsure"
+    "generated"
   ],
   "profile": [
     "name",
@@ -616,5 +615,6 @@
     "dataSharingConsent"
   ],
   "consentVersion": "2026-11-15-v3",
-  "packageFingerprint": "19c2395d995ae632ab6d584bc2a2f142b35f760d4df39b3bde894043d423daec"
+  "previousPackageFingerprint": "19c2395d995ae632ab6d584bc2a2f142b35f760d4df39b3bde894043d423daec",
+  "packageFingerprint": "eefa8b68ddf08bf447019308b6053480ade4e53e5bf74476a59733b497ed82e5"
 }

@@ -1,4 +1,5 @@
-export const choices = ['real', 'generated', 'unsure'];
+export const choices = ['real', 'generated'];
+export const isLegacyPacket = (packet,study) => packet?.packageFingerprint === study.previousPackageFingerprint;
 export const authorship = ['yes', 'no'];
 export function validateProfile(p) {
   if (!p || typeof p.name !== 'string' || !p.name.trim() || p.name.length > 120) throw Error('Please enter your full name.');
@@ -8,7 +9,8 @@ export function validateProfile(p) {
   return { name: p.name.trim(), experienceYears: p.experienceYears, authorshipConsent: p.authorshipConsent, dataSharingConsent: true };
 }
 export function validatePacket(p, study, complete = false) {
-  if (!p || p.packetType !== study.packetType || p.schemaVersion !== 2 || p.packageFingerprint !== study.packageFingerprint || p.originalPackageFingerprint !== study.originalPackageFingerprint || p.consentVersion !== study.consentVersion) throw Error('This backup belongs to a different study or version.');
+  if (!p || p.packetType !== study.packetType || p.schemaVersion !== 2 || (!isLegacyPacket(p,study) && p.packageFingerprint !== study.packageFingerprint) || p.originalPackageFingerprint !== study.originalPackageFingerprint || p.consentVersion !== study.consentVersion) throw Error('This backup belongs to a different study or version.');
+  const allowed=isLegacyPacket(p,study)?[...choices,'unsure']:choices;
   const profile=validateProfile(p.profile);
   if (typeof p.submissionId !== 'string' || !/^[a-f0-9-]{36}$/.test(p.submissionId)) throw Error('Invalid response identifier.');
   if (typeof p.submissionToken !== 'string' || !/^[a-f0-9]{64}$/.test(p.submissionToken)) throw Error('Invalid response key.');
@@ -19,10 +21,20 @@ export function validatePacket(p, study, complete = false) {
     if (!r || r.recordId !== expected.id || seen.has(r.recordId) || r.imageSha256 !== expected.sha256) throw Error('Image identifiers, order, or hashes differ from the study.');
     seen.add(r.recordId);
     const guess=r.values?.guess;
-    if (!choices.includes(guess) && guess !== '') throw Error('Invalid image judgment.');
-    if (complete && !choices.includes(guess)) throw Error('Please complete all 100 judgments.');
+    if (!allowed.includes(guess) && guess !== '') throw Error('Choose Real or Synthetic for every image.');
+    if (complete && !allowed.includes(guess)) throw Error('Please complete all 100 judgments.');
     if (guess && (typeof r.updatedAt !== 'string' || !Number.isFinite(Date.parse(r.updatedAt)))) throw Error('Invalid decision timestamp.');
     return {recordId:r.recordId,imageSha256:r.imageSha256,values:{guess},updatedAt:guess?r.updatedAt:null};
   });
-  return {packetType:study.packetType,schemaVersion:2,appVersion:'2.2.0',packageFingerprint:study.packageFingerprint,originalPackageFingerprint:study.originalPackageFingerprint,consentVersion:study.consentVersion,submissionId:p.submissionId,submissionToken:p.submissionToken,profile,reviewerName:profile.name,completedRecords:records.filter(r=>choices.includes(r.values.guess)).length,totalRecords:100,records};
+  return {packetType:study.packetType,schemaVersion:2,appVersion:'2.3.0',responseMode:isLegacyPacket(p,study)?'ternary-v2':'binary-v1',packageFingerprint:p.packageFingerprint,originalPackageFingerprint:study.originalPackageFingerprint,consentVersion:study.consentVersion,submissionId:p.submissionId,submissionToken:p.submissionToken,profile,reviewerName:profile.name,completedRecords:records.filter(r=>allowed.includes(r.values.guess)).length,totalRecords:100,records};
+}
+export function validateBinaryPacket(packet,study){
+  const p=validatePacket(packet,study,true);
+  if(isLegacyPacket(p,study))throw Error('This is an earlier assessment. Restore it on the website and choose Real or Synthetic for all remaining images before submitting.');
+  return p;
+}
+export function migrateLegacyDraft(packet,study,submissionId,submissionToken){
+  const p=validatePacket(packet,study);
+  if(!isLegacyPacket(p,study))return p;
+  return validatePacket({...p,packageFingerprint:study.packageFingerprint,submissionId,submissionToken,records:p.records.map(r=>choices.includes(r.values.guess)?r:{...r,values:{guess:''},updatedAt:null})},study);
 }
