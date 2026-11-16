@@ -1,5 +1,5 @@
 import {choices,validateProfile,validatePacket} from './protocol.js';
-import {buildFormsTransferURL} from './forms-transfer.js';
+import {buildFormsTransferURL} from './forms-transfer.js?v=compact-v2';
 const $=id=>document.getElementById(id);
 let study,config,state,index=0,ready=false,objectURL=null,loadNumber=0,saving=false,storageOK=true,completionPrompt=false;
 const notice=(message,error=false)=>{$('notice').textContent=message;$('notice').className=error?'error':'';};
