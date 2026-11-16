@@ -1,1 +1,16 @@
-{"apiBase":"","collectionEnabled":false,"previewMode":true}
+{
+  "apiBase": "",
+  "collectionEnabled": true,
+  "previewMode": false,
+  "collectionMethod": "microsoftForms",
+  "microsoftForms": {
+    "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=nP9fomM_sk-aitm90DIfmgyJN1rf2ZRHj3-YgOlrRxxUNE80WjY0SzBPT1pMNTBLUjBYVldWNEdKNS4u",
+    "fields": {
+      "name": "re6afda4301ee486d9c423aed0a724a55",
+      "experience": "r0503c5c06971419299fc433196a0bece",
+      "authorship": "rb0105b075b814a87b9a599d3dcd0f7bf",
+      "judgments": "r510063e7e30646b9b10ef2f7f68103e1",
+      "agreement": "r0c1e40e5d8a94c0fb24ae973916835dd"
+    }
+  }
+}

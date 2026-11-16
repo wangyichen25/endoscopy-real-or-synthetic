@@ -1,19 +1,21 @@
 # Endoscopy reader study
 
-A GitHub Pages assessment of the same 100 images, in the same order, as the original five-reader SNEL study. Participants choose Real, Synthetic, or Unsure. The profile asks for full name, numeric years of endoscopy experience, and a single Yes/No question about authorship permission. Participation does not establish authorship.
+GitHub Pages hosts the exact original 100 images and Real / Synthetic / Unsure assessment. Completed answers are transferred to a prefilled Microsoft Form owned by the study owner’s Mayo Clinic account. Participants finish by selecting **Submit in Microsoft Forms**. Microsoft Forms then confirms receipt and stores the response privately.
 
-The image set is byte-identical to the original PNG packet. Image bytes are separate release assets, outside Git. Dataset credits and the CC BY 4.0 license accompany the site. No answer key, previous reader identities, prior responses, or model weights are included.
+Study website: https://wangyichen25.github.io/endoscopy-real-or-synthetic/
 
-## Current status
+## Access and submission
 
-**Interactive preview only: use test details. The study is not open to submissions.** GitHub Pages serves the interface and images. Automatic private submission requires a separately hosted API and database. `config.json` deliberately keeps participation closed until the live backend is configured and verified.
+Mayo has disabled external respondents for this form. A **Mayo Clinic account is required** for the final submission. The public image-review page explains this before the assessment. No password or GitHub credential is placed in the page.
 
-## Collection contract
+The final screen says **Continue to Microsoft Forms** and explains that continuing does not itself save a response. Name, numeric experience, the single Yes/No authorship permission, all 100 image judgments, and the existing sharing acknowledgment are transferred using the supported Forms prefilled-link feature. If Forms offers a previous draft, choose **New draft** to use the newly transferred answers. The site never claims that opening Forms is proof of receipt.
 
-The backend must implement `POST /api/responses`, accept schema version 2 packets bound to `study.json`, validate exactly 100 decisions, and return `{ "receipt": { "id": "<submissionId>", "receivedAt": "<ISO time>" } }` only after durable storage. Exact retries must return the original receipt without adding rows. It must reject attempts to alter a submitted response and provide no public response-list endpoint. The production API must allow the `https://wangyichen25.github.io` browser origin.
+The name/experience/authorship inputs have no default responses. Image judgments must all be completed before transfer. Unsure counts as an answer. The unanswered-image list links directly to missing items. Drafts and JSON backups remain available in the browser. This update preserves the study fingerprint and existing saved drafts.
 
-Browser storage holds an unsubmitted draft and downloadable JSON backup. It is not the study database. The site shows a confirmation only after the API acknowledges the response. There are no analytics or external fonts. Responses and personal details must never be committed or uploaded as public release assets.
+## Stored data
 
-## Opening the study
+The Forms response records the Mayo sign-in name/email and submission time, profile answers, sharing acknowledgment, and a readable 100-line answer block. That block includes the fixed study fingerprint and a response UUID. `forms-transfer.js` validates completeness before transfer and exports an independent parser for checking downloaded records. Each B001–B100 judgment maps to the unchanged image hash in `study.json`. Forms completion duration measures only the final submission step, not the 100-image assessment. Individual decision timestamps remain in the optional original JSON backup, rather than the short Forms answer block.
 
-After deploying and testing the private backend, set `dist/config.json` to its HTTPS origin and `collectionEnabled: true`. Commit the reviewed configuration, redeploy using the existing frozen image release, and verify a complete test response plus private owner export before distributing invitations. The previous five-reader analysis remains separate and unchanged.
+Prefilled answers are editable in Microsoft Forms. Exports must be checked with the parser before analysis. The form permits repeat submissions; deduplicate exact response UUIDs and investigate conflicting duplicates during analysis. One clearly marked QA test response, UUID `00000000-0000-4000-8000-202611150001`, was saved and read back successfully. **Exclude that record from the study.**
+
+No response data, Mayo account credentials, prior reader identities, answer key, or model weights are published in this repository. Image bytes remain separate release assets. Dataset attribution and the CC BY 4.0 license accompany the site.
