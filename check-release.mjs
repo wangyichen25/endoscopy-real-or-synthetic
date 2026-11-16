@@ -11,4 +11,5 @@ if(config.collectionEnabled){
     if(!fs.existsSync('dist/forms-transfer.js'))throw Error('Missing Microsoft Forms transfer helper');
   }else if(!config.apiBase.startsWith('https://'))throw Error('Automatic submissions require a configured HTTPS backend');
 }
+if(!/^[a-f0-9]{64}$/.test(config.scoreCommitment??'')||!fs.existsSync('dist/score.js'))throw Error('Missing aggregate scoring support');
 console.log(JSON.stringify({status:'passed',images:100,collectionEnabled:config.collectionEnabled,packageFingerprint:study.packageFingerprint}));
